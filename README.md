@@ -1,3 +1,8 @@
+# React-Redux-Timers
+Following this tutorial: https://github.com/MakeSchool-Tutorials/web-7-react-redux-timers-app
+
+
+<hr>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
