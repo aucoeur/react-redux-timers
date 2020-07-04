@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 
 import reducers from './reducers';
 import { update } from './actions';
+import { loadState, saveState } from './utils';
+import throttle from 'lodash/throttle';
 
 import logo from './logo.svg';
 import './App.css';
@@ -11,7 +13,12 @@ import './App.css';
 import NewTimer from './components/new-timer';
 import ListTimers from './components/list-timers'
 
-const store = createStore(reducers);
+const persistedState = loadState()
+const store = createStore(reducers, persistedState);
+
+store.subscribe(throttle(() => {
+  saveState(store.getState())
+}, 1000));
 
 let lastUpdateTime = Date.now()
 setInterval(() => {
@@ -20,6 +27,8 @@ setInterval(() => {
   lastUpdateTime = now
   store.dispatch(update(deltaTime))
 }, 50)
+
+
 
 class App extends Component {
   render() {
