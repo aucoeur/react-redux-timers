@@ -3,6 +3,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import reducers from './reducers';
+import { update } from './actions';
 
 import logo from './logo.svg';
 import './App.css';
@@ -10,7 +11,15 @@ import './App.css';
 import NewTimer from './components/new-timer';
 import ListTimers from './components/list-timers'
 
-const store = createStore(reducers)
+const store = createStore(reducers);
+
+let lastUpdateTime = Date.now()
+setInterval(() => {
+  const now = Date.now()
+  const deltaTime = now - lastUpdateTime
+  lastUpdateTime = now
+  store.dispatch(update(deltaTime))
+}, 50)
 
 class App extends Component {
   render() {
