@@ -7,7 +7,7 @@ import { update } from './actions';
 import { loadState, saveState } from './utils';
 import throttle from 'lodash/throttle';
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import NewTimer from './components/new-timer';
